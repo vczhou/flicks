@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		55837E8A1E3D3AFE00C8A1F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55837E891E3D3AFE00C8A1F8 /* AppDelegate.swift */; };
-		55837E8C1E3D3AFE00C8A1F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55837E8B1E3D3AFE00C8A1F8 /* ViewController.swift */; };
 		55837E8F1E3D3AFE00C8A1F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55837E8D1E3D3AFE00C8A1F8 /* Main.storyboard */; };
 		55837E911E3D3AFE00C8A1F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55837E901E3D3AFE00C8A1F8 /* Images.xcassets */; };
 		55837E941E3D3AFE00C8A1F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55837E921E3D3AFE00C8A1F8 /* LaunchScreen.xib */; };
 		55837EA01E3D3AFE00C8A1F8 /* FlicksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55837E9F1E3D3AFE00C8A1F8 /* FlicksTests.swift */; };
+		55A0BAC81E3D445700C311A1 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0BAC71E3D445700C311A1 /* MoviesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +29,13 @@
 		55837E841E3D3AFE00C8A1F8 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55837E881E3D3AFE00C8A1F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55837E891E3D3AFE00C8A1F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55837E8B1E3D3AFE00C8A1F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		55837E8E1E3D3AFE00C8A1F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55837E901E3D3AFE00C8A1F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55837E931E3D3AFE00C8A1F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		55837E991E3D3AFE00C8A1F8 /* FlicksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlicksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55837E9E1E3D3AFE00C8A1F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55837E9F1E3D3AFE00C8A1F8 /* FlicksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicksTests.swift; sourceTree = "<group>"; };
+		55A0BAC71E3D445700C311A1 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +78,11 @@
 			isa = PBXGroup;
 			children = (
 				55837E891E3D3AFE00C8A1F8 /* AppDelegate.swift */,
-				55837E8B1E3D3AFE00C8A1F8 /* ViewController.swift */,
 				55837E8D1E3D3AFE00C8A1F8 /* Main.storyboard */,
 				55837E901E3D3AFE00C8A1F8 /* Images.xcassets */,
 				55837E921E3D3AFE00C8A1F8 /* LaunchScreen.xib */,
 				55837E871E3D3AFE00C8A1F8 /* Supporting Files */,
+				55A0BAC71E3D445700C311A1 /* MoviesViewController.swift */,
 			);
 			path = Flicks;
 			sourceTree = "<group>";
@@ -212,8 +212,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55837E8C1E3D3AFE00C8A1F8 /* ViewController.swift in Sources */,
 				55837E8A1E3D3AFE00C8A1F8 /* AppDelegate.swift in Sources */,
+				55A0BAC81E3D445700C311A1 /* MoviesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,8 +341,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Flicks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -351,8 +353,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Flicks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -409,6 +413,7 @@
 				55837EA51E3D3AFE00C8A1F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55837EA61E3D3AFE00C8A1F8 /* Build configuration list for PBXNativeTarget "FlicksTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				55837EA81E3D3AFE00C8A1F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
