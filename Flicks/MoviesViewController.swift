@@ -37,8 +37,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            // Hide HUD once the network request comes back (must be done on 
-            // main UI thread)
+            // Hide HUD once the network request comes back (must be done on main UI thread)
             MBProgressHUD.hide(for: self.view, animated: true)
             
             if let data = data {
@@ -46,7 +45,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
-                    self.tableView.reloadData()
+                    //self.tableView.reloadData()
                 }
             }
         }
@@ -54,7 +53,6 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        
         // ... Create the URLRequest `myRequest` ...
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
