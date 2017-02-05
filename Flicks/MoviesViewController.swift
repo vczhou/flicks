@@ -10,11 +10,14 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var movies: [NSDictionary]?
+    var filteredMovies: [NSDictionary]?
+    var isFiltered: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
+        searchBar.placeholder = "Search Movies"
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
@@ -45,7 +50,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print(dataDictionary)
                     
                     self.movies = dataDictionary["results"] as? [NSDictionary]
-                    //self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -87,6 +92,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let movies = movies {
+            if isFiltered {
+                return filteredMovies!.count
+            }
             return movies.count
         } else {
             return 0
@@ -96,7 +104,11 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies![indexPath.row]
+        var movie = movies![indexPath.row]
+        if(isFiltered && filteredMovies!.count != 0){
+            movie = filteredMovies![indexPath.row]
+        }
+        
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
         let posterPath = movie["poster_path"] as! String
@@ -112,7 +124,39 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell 
     }
     
-
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+        isFiltered = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        isFiltered = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        isFiltered = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isFiltered = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty{
+            filteredMovies = movies
+        } else {
+            filteredMovies = movies!.filter({(movie: NSDictionary) -> Bool in
+                return (movie["title"] as! String).lowercased().range(of: searchText.lowercased()) != nil
+            })
+        }
+        
+        tableView.reloadData()
+    }
+    
     /*
     // MARK: - Navigation
 
