@@ -147,7 +147,10 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
-        let movie = movies![indexPath!.row]
+        var movie = movies![indexPath!.row]
+        if(isFiltered && filteredMovies!.count != 0){
+            movie = filteredMovies![indexPath!.row]
+        }
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
