@@ -146,6 +146,18 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UITableViewCell
+        
+        // No color when user selects cell
+        cell.selectionStyle = .none
+        
+        /*
+        // Use a red color when the user selects the cell
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = backgroundView
+        */
+        
+        
         let indexPath = tableView.indexPath(for: cell)
         var movie = movies![indexPath!.row]
         if(isFiltered && filteredMovies!.count != 0){
